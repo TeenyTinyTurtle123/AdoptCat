@@ -1,23 +1,31 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Reflection.Metadata.Ecma335;
 
 internal class Program
 {
-    List<Cat> catList = new();
+    static List<Cat> catList = new();
     private static void Main(string[] args)
     {
         while (true)
         {
+            // Cat newCat = new Cat();
 
             Console.Clear();
 
             Meny();
             string input = Console.ReadLine();
 
+
+
             if (input.ToUpper() == "Q")
             {
                 System.Console.WriteLine("See you again");
                 Environment.Exit(0);
+            }
+            else if (input == "1")
+            {
+                AddCat();
             }
 
 
@@ -38,6 +46,26 @@ internal class Program
         System.Console.Write("> ");
 
     }
+    static void AddCat()
+    {
+        System.Console.WriteLine("What's the cat's name?: ");
+        string catName = Console.ReadLine();
+
+        System.Console.WriteLine("What colour is the cat?: ");
+        string catColour = Console.ReadLine();
+
+        System.Console.WriteLine("And how old is the cat!");
+        if (int.TryParse(Console.ReadLine(), out int catAge))
+        {
+            Cat newCat = new Cat(catName, catColour, catAge);
+            catList.Add(newCat);
+            System.Console.WriteLine("We have registrated you cat?");
+
+            Console.ReadKey();
+
+        }
+
+    }
     class Cat
     {
         public string Name;
@@ -46,6 +74,13 @@ internal class Program
         public void CatInfo()
         {
             System.Console.WriteLine("This is " + Name + " the are a " + Age + " year old " + Colour + " happy cat!");
+        }
+        public Cat(string name, string colour, int age)
+        {
+            Name = name;
+            Colour = colour;
+            Age = age;
+
         }
 
         public void Food()
