@@ -6,13 +6,26 @@ internal class Program
     List<Cat> catList = new();
     private static void Main(string[] args)
     {
-        Console.Clear();
+        while (true)
+        {
 
-        Meny();
+            Console.Clear();
+
+            Meny();
+            string input = Console.ReadLine();
+
+            if (input.ToUpper() == "Q")
+            {
+                System.Console.WriteLine("See you again");
+                Environment.Exit(0);
+            }
 
 
 
+
+        }
     }
+
     static void Meny()
     {
         System.Console.WriteLine("Welcoms! This is the Cat registrater!");
@@ -24,7 +37,6 @@ internal class Program
         System.Console.WriteLine("Q. Quit the meny");
         System.Console.Write("> ");
 
-        string input = Console.ReadLine();
     }
     class Cat
     {
