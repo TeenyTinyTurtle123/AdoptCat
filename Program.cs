@@ -63,16 +63,38 @@ internal class Program
         System.Console.WriteLine("What colour is the cat?: ");// asking/adding the colour in a varible
         string catColour = Console.ReadLine();
 
-        System.Console.WriteLine("And how old is the cat?"); // asking their age. 
-        if (int.TryParse(Console.ReadLine(), out int catAge)) // we use int.TryParse to try and make the answer into an int-varible
-        {                                                    // if it works, it will be given the varible catAge
-            Cat newCat = new Cat(catName, catColour, catAge); // and if everything works, all information -
-            catList.Add(newCat); // - will be added into the catList, as newCat
-            System.Console.WriteLine("We have registrated you cat!");
+        int catAge = 0;
 
-            Console.ReadKey();
+        while (true)
+        {
+
+
+            System.Console.WriteLine("And how old is the cat?"); // asking their age. 
+            if (int.TryParse(Console.ReadLine(), out catAge)) // we use int.TryParse to try and make the answer into the int-varible
+            {
+                if (catAge > 0) // checkes to see if the age isn't negative
+                {
+                    break; //breaks the loop
+
+                }
+                else
+                {
+                    System.Console.WriteLine("The age can't be negative");
+                }
+
+            }
+            else
+            {
+                System.Console.WriteLine("That's not a correct age, try again");
+            }
 
         }
+
+        Cat newCat = new Cat(catName, catColour, catAge);
+        catList.Add(newCat);
+        System.Console.WriteLine("We have registered your cat!");
+
+        Console.ReadKey();
 
     }
     static void ShowCats()
@@ -81,7 +103,10 @@ internal class Program
         foreach (Cat cat in catList)
         {
             cat.CatInfo(); // I'm using a foreach loop to list all the added cats, by using the method
-        }                  // CatInfo that I made in the Cat class
+                           // CatInfo that I made in the Cat class
+            cat.Food();
+            System.Console.WriteLine("---------------------");
+        }
         Console.ReadKey();
     }
     static void AdoptCat()
@@ -129,7 +154,7 @@ internal class Program
         }
         public void CatInfo() // a method that will use the information to print this out
         {
-            System.Console.WriteLine("This is " + Name + ", they are a " + Age + " year old " + Colour + " happy cat!");
+            System.Console.WriteLine("* This is " + Name + ", they are a " + Age + " year old " + Colour + " happy cat!");
         }
 
         public void Food()
@@ -148,7 +173,7 @@ internal class Program
             }
             else if (Age > 11)
             {
-                System.Console.WriteLine("Just give the cat all the fish you have!");
+                System.Console.WriteLine("Just give this cat all the fish you have!");
             }
         }
     }
