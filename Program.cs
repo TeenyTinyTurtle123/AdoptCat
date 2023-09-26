@@ -4,26 +4,25 @@ using System.Reflection.Metadata.Ecma335;
 
 internal class Program
 {
-    static List<Cat> catList = new();
+    static List<Cat> catList = new(); // making a list that will store information from the Cat class
     private static void Main(string[] args)
     {
         while (true)
         {
-            // Cat newCat = new Cat();
 
             Console.Clear();
 
-            Meny();
-            string input = Console.ReadLine();
+            Meny();                          // the meny is shown and the users input will be stored
+            string input = Console.ReadLine();// into the string 'input'
 
 
 
-            if (input.ToUpper() == "Q")
-            {
-                System.Console.WriteLine("See you again");
+            if (input.ToUpper() == "Q") // making a smal 'q' turn turn into a lagre 'Q'
+            {                           // and quitting the loop
+                System.Console.WriteLine("See you again!");
                 Environment.Exit(0);
             }
-            else if (input == "1")
+            else if (input == "1") // if the user presses '1', the AddCat method will be activated
             {
                 AddCat();
             }
@@ -32,7 +31,7 @@ internal class Program
         }
     }
 
-    static void Meny()
+    static void Meny() // This is the meny
     {
         System.Console.WriteLine("Welcoms! This is the Cat registrater!");
         System.Console.WriteLine("What will you be doing today?: ");
@@ -44,19 +43,19 @@ internal class Program
         System.Console.Write("> ");
 
     }
-    static void AddCat()
+    static void AddCat() // the metod to add a cat.
     {
-        System.Console.WriteLine("What's the cat's name?: ");
+        System.Console.WriteLine("What's the cat's name?: ");//  We start by asking/adding the name in a varible
         string catName = Console.ReadLine();
 
-        System.Console.WriteLine("What colour is the cat?: ");
+        System.Console.WriteLine("What colour is the cat?: ");// asking/adding the colour in a varible
         string catColour = Console.ReadLine();
 
-        System.Console.WriteLine("And how old is the cat!");
-        if (int.TryParse(Console.ReadLine(), out int catAge))
-        {
-            Cat newCat = new Cat(catName, catColour, catAge);
-            catList.Add(newCat);
+        System.Console.WriteLine("And how old is the cat!"); // asking their age. 
+        if (int.TryParse(Console.ReadLine(), out int catAge)) // we use int.TryParse to try and make the answer into an int-varible
+        {                                                    // if it works, it will be given the varible catAge
+            Cat newCat = new Cat(catName, catColour, catAge); // and if everything works, all information -
+            catList.Add(newCat); // - will be added into the catList, as newCat
             System.Console.WriteLine("We have registrated you cat?");
 
             Console.ReadKey();
@@ -64,16 +63,16 @@ internal class Program
         }
 
     }
-    class Cat
+    class Cat // creating the Cat class
     {
-        public string Name;
+        public string Name; // givin the varibels/ information we want to store
         public string Colour;
         public int Age;
-        public void CatInfo()
+        public void CatInfo() // a method that will use the information to print this out
         {
-            System.Console.WriteLine("This is " + Name + " the are a " + Age + " year old " + Colour + " happy cat!");
+            System.Console.WriteLine("This is " + Name + " they are a " + Age + " year old " + Colour + " happy cat!");
         }
-        public Cat(string name, string colour, int age)
+        public Cat(string name, string colour, int age) // a constructor
         {
             Name = name;
             Colour = colour;
