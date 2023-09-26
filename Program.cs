@@ -30,6 +30,10 @@ internal class Program
             {
                 ShowCats();
             }
+            else if (input == "3")
+            {
+                AdoptCat();
+            }
             else if (input == "4")
             {
                 ClearCats();
@@ -80,10 +84,36 @@ internal class Program
         }                  // CatInfo that I made in the Cat class
         Console.ReadKey();
     }
+    static void AdoptCat()
+    {
+        System.Console.WriteLine("Which cat do you wish to adopt?: ");
+        for (int i = 0; i < catList.Count; i++)
+        {
+            System.Console.WriteLine(i + 1 + ". " + catList[i].Name); // unless you add the '+ 1'
+        }                                                   // the list will start with 0, 1, 2...
+        string choice = Console.ReadLine();
+        // here we try to make the string choice, into int Choice. && makde sure the numver is higer than 1 && lower then the list number
+        if (int.TryParse(choice, out int Choice) && Choice >= 1 && Choice <= catList.Count)
+        {
+            Cat removeCat = catList[Choice - 1]; // '-1' is needed her because we have a '+ 1'
+            catList.RemoveAt(Choice - 1);
+
+            System.Console.WriteLine("Congratulation! " + removeCat.Name + " is now your little buddy!");
+
+        }
+        else
+        {
+            System.Console.WriteLine("You must have pressed a wrong button, please try again");
+        }
+        Console.ReadKey();
+
+    }
     static void ClearCats()
     {
         catList.Clear(); // this clear the catList-list
         System.Console.WriteLine("All Cats have been moved to another location!");
+
+        Console.ReadKey();
     }
     class Cat // creating the Cat class
     {
