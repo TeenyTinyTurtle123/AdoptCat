@@ -26,6 +26,14 @@ internal class Program
             {
                 AddCat();
             }
+            else if (input == "2")
+            {
+                ShowCats();
+            }
+            else if (input == "4")
+            {
+                ClearCats();
+            }
 
 
         }
@@ -51,33 +59,47 @@ internal class Program
         System.Console.WriteLine("What colour is the cat?: ");// asking/adding the colour in a varible
         string catColour = Console.ReadLine();
 
-        System.Console.WriteLine("And how old is the cat!"); // asking their age. 
+        System.Console.WriteLine("And how old is the cat?"); // asking their age. 
         if (int.TryParse(Console.ReadLine(), out int catAge)) // we use int.TryParse to try and make the answer into an int-varible
         {                                                    // if it works, it will be given the varible catAge
             Cat newCat = new Cat(catName, catColour, catAge); // and if everything works, all information -
             catList.Add(newCat); // - will be added into the catList, as newCat
-            System.Console.WriteLine("We have registrated you cat?");
+            System.Console.WriteLine("We have registrated you cat!");
 
             Console.ReadKey();
 
         }
 
     }
+    static void ShowCats()
+    {
+
+        foreach (Cat cat in catList)
+        {
+            cat.CatInfo(); // I'm using a foreach loop to list all the added cats, by using the method
+        }                  // CatInfo that I made in the Cat class
+        Console.ReadKey();
+    }
+    static void ClearCats()
+    {
+        catList.Clear(); // this clear the catList-list
+        System.Console.WriteLine("All Cats have been moved to another location!");
+    }
     class Cat // creating the Cat class
     {
         public string Name; // givin the varibels/ information we want to store
         public string Colour;
         public int Age;
-        public void CatInfo() // a method that will use the information to print this out
-        {
-            System.Console.WriteLine("This is " + Name + " they are a " + Age + " year old " + Colour + " happy cat!");
-        }
         public Cat(string name, string colour, int age) // a constructor
         {
             Name = name;
             Colour = colour;
             Age = age;
 
+        }
+        public void CatInfo() // a method that will use the information to print this out
+        {
+            System.Console.WriteLine("This is " + Name + ", they are a " + Age + " year old " + Colour + " happy cat!");
         }
 
         public void Food()
